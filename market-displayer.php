@@ -12,10 +12,10 @@ if ($conn->connect_error) {
 } 
 
 //========== PLEX ==========
-$plex = "SELECT id, date, buy_per, buy_vol, sell_per, sell_vol FROM eve_data.29668 ORDER BY ID DESC LIMIT 1";
+$plex = "SELECT id, date, buy_per, buy_vol, sell_per, sell_vol FROM larsja5_eve_data.29668 ORDER BY ID DESC LIMIT 1";
 $plexresult = $conn->query($plex);
 
-$old_plex = "SELECT id, date, buy_per, buy_vol, sell_per, sell_vol FROM eve_data.29668 ORDER BY ID DESC LIMIT 2";
+$old_plex = "SELECT id, date, buy_per, buy_vol, sell_per, sell_vol FROM larsja5_eve_data.29668 ORDER BY ID DESC LIMIT 2";
 $old_plexresult = $conn->query($old_plex);
 
 if ($plexresult->num_rows > 0) {
@@ -39,11 +39,20 @@ if ($plexresult->num_rows > 0) {
 			
 			$old_sell_vol=$row1["sell_vol"];
 			$old_sell_vol=number_format((float)( $row["sell_vol"] - $old_sell_vol ) / $old_sell_vol, 3, '.', '');
+			
 		}
 	}
+
+if ($old_buy_per <= 0) { $obp_posneg = 'negative'; } else { $obp_posneg = 'positive'; }
+if ($old_buy_vol <= 0) { $obv_posneg = 'negative'; } else { $obv_posneg = 'positive'; }
+if ($old_sell_per <= 0) { $osp_posneg = 'negative'; } else { $osp_posneg = 'positive'; }
+if ($old_sell_vol <= 0) { $osv_posneg = 'negative'; } else { $osv_posneg = 'positive'; }
+	
+	
+	
 	if ($plexresult->num_rows > 0) {
 		
-		echo "<li><a href='/eve-markets/' style='font-family: monospace;'><img src='/wp-content/uploads/29668_32.png'>PLEX: Buy " . $row["buy_per"]. " / " . $old_buy_per. "% - Vol " . $row["buy_vol"]. " / " .$old_buy_vol. "% - Sell " . $row["sell_per"]. " / " . $old_sell_per. "% - Vol " . $row["sell_vol"]. " / " . $old_sell_vol . "%</a></li>";
+		echo "<li><a href='/eve-markets/' style='font-family: monospace;'><img src='/wp-content/uploads/29668_32.png'>PLEX: Buy " . $row["buy_per"]. " <span class='value-" . $obp_posneg . "'>" . $old_buy_per. "%</span> / Vol " . $row["buy_vol"]. " <span class='value-" . $obv_posneg . "'>" .$old_buy_vol. "%</span> / Sell " . $row["sell_per"]. " <span class='value-" . $osp_posneg . "'>" . $old_sell_per. "%</span> / Vol " . $row["sell_vol"]. " <span class='value-" . $osv_posneg . "'>" . $old_sell_vol . "%</span></a></li>";
 
 	}
 	else
@@ -59,10 +68,10 @@ if ($plexresult->num_rows > 0) {
 }
 
 //========== QUAFEZERO ==========
-$quafe = "SELECT id, date, buy_per, buy_vol, sell_per, sell_vol FROM eve_data.3898 ORDER BY ID DESC LIMIT 1";
+$quafe = "SELECT id, date, buy_per, buy_vol, sell_per, sell_vol FROM larsja5_eve_data.3898 ORDER BY ID DESC LIMIT 1";
 $quaferesult = $conn->query($quafe);
 
-$old_quafe = "SELECT id, date, buy_per, buy_vol, sell_per, sell_vol FROM eve_data.3898 ORDER BY ID DESC LIMIT 2";
+$old_quafe = "SELECT id, date, buy_per, buy_vol, sell_per, sell_vol FROM larsja5_eve_data.3898 ORDER BY ID DESC LIMIT 2";
 $old_quaferesult = $conn->query($old_plex);
 
 if ($quaferesult->num_rows > 0) {
@@ -88,9 +97,17 @@ if ($quaferesult->num_rows > 0) {
 			$old_sell_vol=number_format((float)( $row["sell_vol"] - $old_sell_vol ) / $old_sell_vol, 3, '.', '');
 		}
 	}
-	if ($plexresult->num_rows > 0) {
+
+if ($old_buy_per <= 0) { $obp_posneg = 'negative'; } else { $obp_posneg = 'positive'; }
+if ($old_buy_vol <= 0) { $obv_posneg = 'negative'; } else { $obv_posneg = 'positive'; }
+if ($old_sell_per <= 0) { $osp_posneg = 'negative'; } else { $osp_posneg = 'positive'; }
+if ($old_sell_vol <= 0) { $osv_posneg = 'negative'; } else { $osv_posneg = 'positive'; }
+
+
+
+	if ($quaferesult->num_rows > 0) {
 		
-		echo "<li><a href='/eve-markets/' style='font-family: monospace;'><img src='/wp-content/uploads/3898_32.png'>Quafezero: Buy " . $row["buy_per"]. " / " . $old_buy_per. "% - Vol " . $row["buy_vol"]. " / " .$old_buy_vol. "% - Sell " . $row["sell_per"]. " / " . $old_sell_per. "% - Vol " . $row["sell_vol"]. " / " . $old_sell_vol . "%</a></li>";
+		echo "<li><a href='/eve-markets/' style='font-family: monospace;'><img src='/wp-content/uploads/3898_32.png'>Quafezero: Buy " . $row["buy_per"]. " <span class='value-" . $obp_posneg . "'>" . $old_buy_per. "%</span> / Vol " . $row["buy_vol"]. " <span class='value-" . $obv_posneg . "'>" .$old_buy_vol. "%</span> / Sell " . $row["sell_per"]. " <span class='value-" . $osp_posneg . "'>" . $old_sell_per. "%</span> / Vol " . $row["sell_vol"]. " <span class='value-" . $osv_posneg . "'>" . $old_sell_vol . "%</span></a></li>";
 
 	}
 	else
@@ -104,10 +121,10 @@ if ($quaferesult->num_rows > 0) {
 }
 
 //========== EXTRACTORS ==========
-$extractor = "SELECT id, date, buy_per, buy_vol, sell_per, sell_vol FROM eve_data.40519 ORDER BY ID DESC LIMIT 1";
+$extractor = "SELECT id, date, buy_per, buy_vol, sell_per, sell_vol FROM larsja5_eve_data.40519 ORDER BY ID DESC LIMIT 1";
 $extractorresult = $conn->query($extractor);
 
-$old_extractor= "SELECT id, date, buy_per, buy_vol, sell_per, sell_vol FROM eve_data.40519 ORDER BY ID DESC LIMIT 2";
+$old_extractor= "SELECT id, date, buy_per, buy_vol, sell_per, sell_vol FROM larsja5_eve_data.40519 ORDER BY ID DESC LIMIT 2";
 $old_extractorresult = $conn->query($old_plex);
 
 if ($extractorresult->num_rows > 0) {
@@ -133,9 +150,17 @@ if ($extractorresult->num_rows > 0) {
 			$old_sell_vol=number_format((float)( $row["sell_vol"] - $old_sell_vol ) / $old_sell_vol, 3, '.', '');
 		}
 	}
-	if ($plexresult->num_rows > 0) {
+
+if ($old_buy_per <= 0) { $obp_posneg = 'negative'; } else { $obp_posneg = 'positive'; }
+if ($old_buy_vol <= 0) { $obv_posneg = 'negative'; } else { $obv_posneg = 'positive'; }
+if ($old_sell_per <= 0) { $osp_posneg = 'negative'; } else { $osp_posneg = 'positive'; }
+if ($old_sell_vol <= 0) { $osv_posneg = 'negative'; } else { $osv_posneg = 'positive'; }
+
+
+
+	if ($extractorresult->num_rows > 0) {
 		
-		echo "<li><a href='/eve-markets/' style='font-family: monospace;'><img src='/wp-content/uploads/40519_32.png'>Skill Extractor: Buy " . $row["buy_per"]. " / " . $old_buy_per. "% - Vol " . $row["buy_vol"]. " / " .$old_buy_vol. "% - Sell " . $row["sell_per"]. " / " . $old_sell_per. "% - Vol " . $row["sell_vol"]. " / " . $old_sell_vol . "%</a></li>";
+		echo "<li><a href='/eve-markets/' style='font-family: monospace;'><img src='/wp-content/uploads/40519_32.png'>Skill Extractor: Buy " . $row["buy_per"]. " <span class='value-" . $obp_posneg . "'>" . $old_buy_per. "%</span> / Vol " . $row["buy_vol"]. " <span class='value-" . $obv_posneg . "'>" .$old_buy_vol. "%</span> / Sell " . $row["sell_per"]. " <span class='value-" . $osp_posneg . "'>" . $old_sell_per. "%</span> / Vol " . $row["sell_vol"]. " <span class='value-" . $osv_posneg . "'>" . $old_sell_vol . "%</span></a></li>";
 
 	}
 	else
@@ -149,10 +174,10 @@ if ($extractorresult->num_rows > 0) {
 }
 
 //========== INJECTORS ==========
-$injector = "SELECT id, date, buy_per, buy_vol, sell_per, sell_vol FROM eve_data.40520 ORDER BY ID DESC LIMIT 1";
+$injector = "SELECT id, date, buy_per, buy_vol, sell_per, sell_vol FROM larsja5_eve_data.40520 ORDER BY ID DESC LIMIT 1";
 $injectorresult = $conn->query($injector);
 
-$old_injector = "SELECT id, date, buy_per, buy_vol, sell_per, sell_vol FROM eve_data.40520 ORDER BY ID DESC LIMIT 2";
+$old_injector = "SELECT id, date, buy_per, buy_vol, sell_per, sell_vol FROM larsja5_eve_data.40520 ORDER BY ID DESC LIMIT 2";
 $old_injectorresult = $conn->query($old_injector);
 
 if ($injectorresult->num_rows > 0) {
@@ -178,9 +203,17 @@ if ($injectorresult->num_rows > 0) {
 			$old_sell_vol=number_format((float)( $row["sell_vol"] - $old_sell_vol ) / $old_sell_vol, 3, '.', '');
 		}
 	}
-	if ($plexresult->num_rows > 0) {
+
+if ($old_buy_per <= 0) { $obp_posneg = 'negative'; } else { $obp_posneg = 'positive'; }
+if ($old_buy_vol <= 0) { $obv_posneg = 'negative'; } else { $obv_posneg = 'positive'; }
+if ($old_sell_per <= 0) { $osp_posneg = 'negative'; } else { $osp_posneg = 'positive'; }
+if ($old_sell_vol <= 0) { $osv_posneg = 'negative'; } else { $osv_posneg = 'positive'; }
+
+
+
+	if ($injectorresult->num_rows > 0) {
 		
-		echo "<li><a href='/eve-markets/' style='font-family: monospace;'><img src='/wp-content/uploads/40520_32.png'>Skill Injector: Buy " . $row["buy_per"]. " / " . $old_buy_per. "% - Vol " . $row["buy_vol"]. " / " .$old_buy_vol. "% - Sell " . $row["sell_per"]. " / " . $old_sell_per. "% - Vol " . $row["sell_vol"]. " / " . $old_sell_vol . "%</a></li>";
+		echo "<li><a href='/eve-markets/' style='font-family: monospace;'><img src='/wp-content/uploads/40520_32.png'>Skill Injector: Buy " . $row["buy_per"]. " <span class='value-" . $obp_posneg . "'>" . $old_buy_per. "%</span> / Vol " . $row["buy_vol"]. " <span class='value-" . $obv_posneg . "'>" .$old_buy_vol. "%</span> / Sell " . $row["sell_per"]. " <span class='value-" . $osp_posneg . "'>" . $old_sell_per. "%</span> / Vol " . $row["sell_vol"]. " <span class='value-" . $osv_posneg . "'>" . $old_sell_vol . "%</span></a></li>";
 
 	}
 	else
