@@ -6,6 +6,6 @@ This app is probably NOT suitable for large quantities of items. There are bette
 
 I use this code to display a nice ticker with market data at http://quafezero.com (quafezero.com being a development playground for me rather than an actual production site that gets actual visitors:)
 
-PSA: I'm no programmer, so use my code at your peril:)
+## PSA: I'm no programmer, so use my code at your peril:)
 
 o7 - Lars
