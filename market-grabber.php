@@ -20,13 +20,9 @@ foreach($typeids as $typeid)
 {
     $item=$xml->xpath('/evec_api/marketstat/type[@id='.$typeid.']');
 	$buyper= (float) $item[0]->buy->percentile;
-    //$buyper=round($buyper,2);
-    $buyvol= (float) $item[0]->buy->volume;
-    //$buyvol=round($buyvol,2);
+	$buyvol= (float) $item[0]->buy->volume;
 	$sellper= (float) $item[0]->sell->percentile;
-    //$sellper=round($sellper,2);
-    $sellvol= (float) $item[0]->sell->volume;
-    //$sellvol=round($sellvol,2);
+ 	$sellvol= (float) $item[0]->sell->volume;
 
 	$result = "INSERT INTO `eve_data`.`$typeid` (`buy_per`, `buy_vol`, `sell_per`, `sell_vol`) VALUES ('$buyper','$buyvol','$sellper','$sellvol')";
 	 
